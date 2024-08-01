@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title layout:fragment="$CONTENT_TITLE - $LAYOUT_TITLE"></title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body class="d-flex flex-column">
+    <!-- Page Content-->
+    <section layout:fragment="body">
+        <div class="text-center m-4">
+            <h1 class="fw-bolder">Product</h1>
+        </div>
+        <div class="container m-4">
+            <div class="row">
+                <!-- Blog entries-->
+                <div class="col-lg-6">
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="#!"><img class="card-img-top" th:src="${product.photo}" alt="..." /></a>
+                        <div class="card-body">
+                            <h2 class="card-title" th:text="${product.name}"></h2>
+                            <p class="card-text" th:text="${product.description}"></p>
+                            <form th:action=@{/store/{itemId}/addCart(itemId=${product.id})} method="Post">
+                                <button class="btn btn-primary" type="submit" >Add to cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <form class="d-flex justify-content-centerm-5" th:action="@{/store/search}" method="Get">
+                                <input type="hidden" name="id" th:value="${product.id}">
+                                <input class="form-control" name="name" type="text" aria-label="Search " placeholder="Search any item..." />
+                                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+                            </form>
+                            <p class="text-danger m-4" th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Other</div>
+                        <div class="card-body">There are plenty more Items to choose from, don't miss out on them!</div>
+                        <form th:action="@{/store}" method="Get">
+                            <button class="btn btn-primary m-2" type="submit">Go To Store</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+<!-- Footer-->
+
+</body>
+</html>

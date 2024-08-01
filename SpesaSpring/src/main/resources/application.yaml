@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Store
+  datasource:
+    name: Product Store
+    url: jdbc:postgresql://localhost:5432/WebStore
+    username: 
+    password:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 2
+  jpa:
+    properties:
+      hibernate-dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  mvc:
+    view:
+      prefix: /templates/
+      suffix: .html
